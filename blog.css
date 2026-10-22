@@ -1,0 +1,146 @@
+/* ===== BLOG — feuille commune a la liste et aux articles  =====
+   Construction inspiree de la page blogue de Paradox : grand titre, filtres
+   et recherche sur une ligne, grille de trois cartes ; cote article, colonne
+   de lecture de 720 px avec un sommaire collant a droite. Les couleurs, la
+   typographie et les rayons sont ceux de Phe-Nix. */
+
+
+/* ---------- LISTE ---------- */
+.bl { max-width: var(--maxw); margin: 0 auto; padding: 132px 40px 110px; }
+.bl-tete { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.bl-tete h1 { font-size: clamp(40px, 6vw, 76px); line-height: .98; letter-spacing: -0.04em; }
+.bl-tete p { color: var(--ink-soft); font-size: 17px; max-width: 46ch; margin-top: 14px; }
+.bl-compte { font-size: 14px; color: var(--ink-soft); white-space: nowrap; }
+.bl-compte b { color: var(--ink); font-weight: 600; }
+
+.bl-filtres { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 38px 0 44px; }
+.bl-filtres select { appearance: none; -webkit-appearance: none; font: inherit; font-size: 15px; font-weight: 500;
+                     color: var(--ink); background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236E6E73' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 14px center;
+                     border: 1px solid var(--hairline); border-radius: 12px; padding: 12px 38px 12px 16px; cursor: pointer; }
+.bl-filtres select:hover { border-color: var(--ink-soft); }
+.bl-filtres select:focus-visible, .bl-recherche input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.bl-effacer { background: none; border: 0; padding: 6px 4px; font: inherit; font-size: 14.5px; color: var(--ink-soft);
+              text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+.bl-effacer:hover { color: var(--accent-texte); }
+.bl-recherche { margin-left: auto; position: relative; min-width: min(320px, 100%); }
+.bl-recherche svg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--ink-soft); }
+.bl-recherche input { width: 100%; font: inherit; font-size: 15px; color: var(--ink); background: var(--bg);
+                      border: 1px solid var(--hairline); border-radius: 12px; padding: 12px 16px 12px 42px; }
+
+.bl-grille { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 46px 28px; }
+.bl-carte { text-decoration: none; color: inherit; display: block; }
+.bl-carte-img { aspect-ratio: 16 / 10; border-radius: 18px; overflow: hidden; background: var(--bg-soft); }
+.bl-carte-img img { width: 100%; height: 100%; object-fit: cover; display: block;
+                    transition: transform 1s cubic-bezier(0.16,1,0.3,1); }
+.bl-carte:hover .bl-carte-img img { transform: scale(1.04); }
+.bl-cat { display: inline-block; margin-top: 18px; font-size: 11.5px; font-weight: 600; letter-spacing: .07em;
+          text-transform: uppercase; color: var(--accent-texte); background: var(--accent-soft);
+          border-radius: 6px; padding: 5px 9px; }
+.bl-carte h2, .bl-carte h3 { font-size: 21px; line-height: 1.3; letter-spacing: -0.015em; font-weight: 600;
+                             margin-top: 12px; color: var(--ink); text-wrap: balance; }
+.bl-carte:hover h2, .bl-carte:hover h3 { color: var(--accent-texte); }
+.bl-meta { margin-top: 10px; font-size: 13.5px; color: var(--ink-soft); }
+.bl-meta b { color: var(--ink); font-weight: 500; }
+.bl-carte:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 18px; }
+.bl-vide { grid-column: 1 / -1; text-align: center; color: var(--ink-soft); padding: 60px 0; }
+
+/* ---------- ARTICLE ---------- */
+.ar-tete { max-width: var(--maxw); margin: 0 auto; padding: 76px 40px 0; }
+.ar-fil { font-size: 13.5px; color: var(--ink-soft); }
+.ar-fil a { color: var(--ink-soft); text-decoration: none; }
+.ar-fil a:hover { color: var(--accent-texte); }
+.ar-tete h1 { font-size: clamp(36px, 5.2vw, 64px); line-height: 1.04; letter-spacing: -0.035em;
+              max-width: 18ch; margin-top: 22px; text-wrap: balance; }
+.ar-chapo { font-size: 19px; line-height: 1.6; color: var(--ink-soft); max-width: 60ch; margin-top: 22px; }
+.ar-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; margin-top: 24px; font-size: 14px; color: var(--ink-soft); }
+.ar-meta .bl-cat { margin-top: 0; }
+.ar-couverture { max-width: var(--maxw); margin: 40px auto 0; padding: 0 40px; }
+.ar-couverture img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; border-radius: 22px; display: block; }
+
+.ar-corps { max-width: var(--maxw); margin: 0 auto; padding: 56px 40px 90px;
+            display: grid; grid-template-columns: minmax(0, 720px) 1fr; gap: 64px; align-items: start; }
+.ar-texte h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.15; letter-spacing: -0.025em;
+               margin: 56px 0 18px; scroll-margin-top: 90px; text-wrap: balance; }
+.ar-texte h3 { font-size: 21px; line-height: 1.3; letter-spacing: -0.015em; margin: 32px 0 10px; scroll-margin-top: 90px; }
+.ar-texte p, .ar-texte li { font-size: 17px; line-height: 1.75; color: #3A3A3F; }
+.ar-texte p { margin-bottom: 18px; }
+.ar-texte ul { list-style: disc; padding-left: 22px; margin-bottom: 18px; }
+.ar-texte li { margin-bottom: 8px; }
+.ar-texte li::marker { color: var(--accent); }
+.ar-resume { background: var(--bg-warm); border-radius: 18px; padding: 26px 30px 12px; margin-bottom: 8px; }
+.ar-resume h2 { margin-top: 0; font-size: 22px; }
+.ar-encadre { border-left: 3px solid var(--accent); padding: 4px 0 4px 20px; margin: 28px 0; }
+.ar-encadre p { font-size: 19px; color: var(--ink); font-weight: 500; margin: 0; }
+
+.ar-sommaire { position: sticky; top: 96px; }
+.ar-sommaire p { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+                 color: var(--ink-soft); margin-bottom: 12px; }
+.ar-sommaire ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--hairline); }
+.ar-sommaire a { display: block; padding: 7px 0 7px 16px; margin-left: -1px; border-left: 2px solid transparent;
+                 font-size: 14px; line-height: 1.45; color: var(--ink-soft); text-decoration: none; }
+.ar-sommaire a:hover { color: var(--ink); }
+.ar-sommaire a.actif { color: var(--accent-texte); border-left-color: var(--accent); font-weight: 500; }
+
+.ar-faq .faq-item { border-bottom: 1px solid var(--hairline); }
+.ar-faq .faq-item:first-child { border-top: 1px solid var(--hairline); }
+.ar-faq .faq-q { width: 100%; background: none; border: 0; text-align: left; font: inherit; font-weight: 600;
+                 font-size: 17px; color: var(--ink); padding: 20px 0; cursor: pointer;
+                 display: flex; justify-content: space-between; gap: 18px; }
+.ar-faq .faq-arrow { color: var(--accent-texte); font-size: 22px; line-height: 1; transition: transform .25s; }
+.ar-faq .faq-item.open .faq-arrow { transform: rotate(45deg); }
+.ar-faq .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s; font-size: 16px; line-height: 1.7; color: var(--ink-soft); }
+.ar-faq .faq-item.open .faq-a { max-height: 320px; padding-bottom: 20px; }
+
+.ar-autres { background: var(--bg-soft); }
+.ar-autres-in { max-width: var(--maxw); margin: 0 auto; padding: 80px 40px 96px; }
+.ar-autres-tete { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 34px; }
+.ar-autres-tete h2 { font-size: clamp(26px, 3vw, 36px); letter-spacing: -0.025em; }
+.ar-autres-tete a { font-size: 15px; font-weight: 600; color: var(--accent-texte); text-decoration: none; }
+.ar-autres-tete a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.ar-appel { background: #150D20; color: #fff; text-align: center; padding: 88px 40px; }
+.ar-appel h2 { color: #fff; font-size: clamp(28px, 3.6vw, 44px); letter-spacing: -0.03em; }
+.ar-appel p { color: rgba(255,255,255,0.74); font-size: 17px; margin: 14px auto 30px; max-width: 46ch; }
+.ar-appel .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.ar-appel .btn-ghost { color: #fff; border-color: rgba(255,255,255,0.5); }
+
+@media (max-width: 960px) {
+  .bl-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ar-corps { grid-template-columns: 1fr; }
+  .ar-sommaire { display: none; }
+}
+@media (max-width: 640px) {
+  .bl, .ar-tete, .ar-autres-in { padding-left: 24px; padding-right: 24px; }
+  .bl { padding-top: 108px; }
+  .ar-couverture { padding: 0 24px; }
+  .ar-couverture img { aspect-ratio: 4 / 3; border-radius: 16px; }
+  .ar-corps { padding: 40px 24px 70px; }
+  .bl-grille { grid-template-columns: 1fr; }
+  .bl-recherche { margin-left: 0; width: 100%; }
+  .bl-filtres select { flex: 1 1 30%; }
+  .ar-texte p, .ar-texte li { font-size: 16.5px; }
+}
+
+/* ---------- ETAT « A VENIR » ----------
+   Trois cartes fantomes montrent la future grille ; le message se pose
+   par-dessus. Rien n'est cliquable dans les fantomes. */
+.bl-avenir { position: relative; margin-top: 48px; }
+.bl-fantomes { list-style: none; padding: 0; margin: 0; opacity: 1;
+               -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 100%);
+                       mask-image: linear-gradient(180deg, #000 30%, transparent 100%); }
+.bl-fantomes .bl-carte-img { background: var(--bg-soft); }
+.bl-fantome { display: block; height: 14px; border-radius: 7px; background: var(--bg-soft); margin-top: 14px; width: 92%; }
+.bl-fantome.court { width: 28%; height: 20px; margin-top: 20px; }
+.bl-fantome.moyen { width: 64%; }
+.bl-avenir-msg { position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%);
+                 width: min(560px, calc(100% - 32px)); text-align: center; background: var(--bg);
+                 border-radius: 26px; padding: 44px 40px 40px; box-shadow: 0 24px 70px rgba(21,13,32,0.14); }
+.bl-avenir-msg .bl-cat { margin-top: 0; }
+.bl-avenir-msg h2 { font-size: clamp(32px, 4vw, 48px); letter-spacing: -0.035em; line-height: 1.05; margin-top: 16px; }
+.bl-avenir-msg p { color: var(--ink-soft); font-size: 17px; line-height: 1.6; margin: 14px auto 26px; max-width: 40ch; }
+.bl-avenir-msg .btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+@media (max-width: 640px) {
+  .bl-fantomes li:nth-child(n+2) { display: none; }
+  .bl-avenir-msg { position: relative; left: auto; top: auto; transform: none; width: auto;
+                   margin: -120px 0 0; padding: 32px 22px 28px; }
+}

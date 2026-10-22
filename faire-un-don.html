@@ -164,6 +164,36 @@
   .repart-label { min-width: 108px; font-size: 12.5px; }
   .repart-row { gap: 10px; margin-bottom: 13px; }
 }
+
+/* La carte Interac est le but de la page : elle occupe presque toute la
+   largeur du bloc, avec un titre, des etapes et un bouton d'adresse a la
+   taille d'un appel a l'action principal. */
+.don-aller { margin-top: 30px; display: inline-flex; align-items: center; gap: 10px; }
+.interac-final { max-width: 940px; padding: 68px 72px 60px; border-radius: 32px; margin-top: 56px;
+                 scroll-margin-top: 90px; }
+.interac-final .tag { font-size: 14px; margin-bottom: 16px; }
+.interac-final h3 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.05; letter-spacing: -0.035em; margin-bottom: 38px; }
+.interac-final .don-etapes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-bottom: 34px; }
+.interac-final .don-etapes li { grid-template-columns: 1fr; align-items: start; gap: 14px; font-size: 18px; font-weight: 500;
+                                background: var(--bg-soft); border-radius: 18px; padding: 22px 22px 24px; }
+.interac-final .don-etapes b { width: 42px; height: 42px; font-size: 18px; background: var(--accent); color: #fff; }
+.interac-final .interac-copy { padding: 24px 28px; border-radius: 18px; border-width: 2px; }
+.interac-final .interac-copy .adr { font-size: clamp(15px, 2.3vw, 26px); }
+.interac-final .interac-copy .act { font-size: 17px; }
+.interac-final .copied-msg { font-size: 16px; }
+.interac-final .don-note { font-size: 15.5px; margin-top: 24px; }
+@media (max-width: 860px) {
+  .interac-final { padding: 40px 22px 34px; border-radius: 24px; }
+  .interac-final .don-etapes { grid-template-columns: 1fr; gap: 10px; }
+  .interac-final .don-etapes li { grid-template-columns: 36px 1fr; align-items: center; font-size: 16.5px; padding: 14px 16px; }
+  .interac-final .don-etapes b { width: 36px; height: 36px; font-size: 16px; }
+  .interac-final .interac-copy { padding: 18px 16px; }
+}
+@media (max-width: 520px) {
+  .interac-final { padding-left: 18px; padding-right: 18px; }
+  .interac-final .interac-copy { padding: 16px 12px; }
+  .interac-final .interac-copy .adr { font-size: clamp(12px, 3.75vw, 16px); }
+}
 </style>
 <link rel="canonical" href="https://ph-nix.vercel.app/faire-un-don.html">
 <meta property="og:type" content="website">
@@ -283,6 +313,7 @@
     <div class="eyebrow" style="justify-content:center;">Faire un don</div>
     <h1>Votre don, c'est<br>un repas chaud ce soir.</h1>
     <p>Pas de carte, pas de frais, pas d'intermédiaire. Un virement Interac, et c'est sur le terrain.</p>
+    <a href="#donner" class="btn btn-primary btn-lg don-aller">Donner maintenant <span aria-hidden="true">↓</span></a>
   </div>
 </section>
 
@@ -346,7 +377,7 @@
 
     <!-- LA FINALE : DON INTERAC -->
     <div class="block">
-      <div class="interac-final">
+      <div class="interac-final" id="donner">
         <div class="tag">Virement Interac · 30 secondes</div>
         <h3>Prêt à faire la différence ?</h3>
         <ol class="don-etapes">

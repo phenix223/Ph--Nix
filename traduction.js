@@ -210,7 +210,7 @@ var DICO = {
  "Exclusivement à Montréal Sud-Ouest, à Saint-Jean-sur-Richelieu et à Longueuil pour le moment.": "Currently in Montreal's South-West, Saint-Jean-sur-Richelieu and Longueuil only.",
  "Expérience terrain inoubliable": "An unforgettable day in the field",
  "Faire partie du mouvement": "Join the movement",
- "Faire un don": "Donate",
+ "Faire un don": "Donate", "Donner maintenant": "Donate now",
  "Faire un don | Phé-Nix, par Interac, 100 % sur le terrain": "Donate | Phé-Nix, by Interac, 100% on the ground",
  "Faire un don →": "Donate →",
  "Faire une demande": "Make a request",
